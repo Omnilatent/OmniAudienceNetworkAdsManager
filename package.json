@@ -1,0 +1,17 @@
+{
+    "name": "com.omnilatent.adsmanager.fan",
+    "displayName": "Omni Ads Manager Extension for Facebook Audience Network",
+    "version": "1.0.1",
+    "unity": "2018.1",
+    "description": "Ads helper for Facebook Audience Network",
+    "keywords": ["ads"],
+    "category": "Wrapper",
+    "dependencies": {
+        "com.omnilatent.adsmanager": "https://github.com/nguyentrong101094/OmniAdsManager.git"
+    },
+    "author": {
+        "name": "Trong",
+        "email": "nguyentrong101094@gmail.com",
+        "url": "https://github.com/nguyentrong101094"
+  }
+}

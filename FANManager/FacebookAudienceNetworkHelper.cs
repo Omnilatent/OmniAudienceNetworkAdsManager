@@ -287,23 +287,23 @@ public class FacebookAudienceNetworkHelper : MonoBehaviour, IAdsNetworkHelper
         Debug.Log("FAN error: " + error);
     }
 
-    public void ShowBanner(AdPlacementType placementType, AdsManager.InterstitialDelegate onAdLoaded = null)
+    public void ShowBanner(AdPlacement.Type placementType, AdsManager.InterstitialDelegate onAdLoaded = null)
     {
         ShowBanner(CustomMediation.GetFANPlacementId(placementType), onAdLoaded);
     }
 
-    public void ShowInterstitial(AdPlacementType placementType, AdsManager.InterstitialDelegate onAdClosed)
+    public void ShowInterstitial(AdPlacement.Type placementType, AdsManager.InterstitialDelegate onAdClosed)
     {
         interstitialClosedDelegate = onAdClosed;
         ShowInterstitial(CustomMediation.GetFANPlacementId(placementType));
     }
 
-    public void RequestInterstitialNoShow(AdPlacementType placementType, AdsManager.InterstitialDelegate onAdLoaded = null, bool showLoading = true)
+    public void RequestInterstitialNoShow(AdPlacement.Type placementType, AdsManager.InterstitialDelegate onAdLoaded = null, bool showLoading = true)
     {
         RequestInterstitialNoShow(CustomMediation.GetFANPlacementId(placementType), onAdLoaded, showLoading);
     }
 
-    public void Reward(AdPlacementType placementType, RewardDelegate onFinish)
+    public void Reward(AdPlacement.Type placementType, RewardDelegate onFinish)
     {
         Reward(onFinish, CustomMediation.GetFANPlacementId(placementType));
     }

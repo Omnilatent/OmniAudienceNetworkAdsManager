@@ -1,7 +1,7 @@
 {
     "name": "com.omnilatent.adsmanager.fan",
     "displayName": "Omni Ads Manager Extension for Facebook Audience Network",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "unity": "2018.1",
     "description": "Ads helper for Facebook Audience Network",
     "keywords": ["ads"],

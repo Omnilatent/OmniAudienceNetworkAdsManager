@@ -307,4 +307,9 @@ public class FacebookAudienceNetworkHelper : MonoBehaviour, IAdsNetworkHelper
     {
         Reward(onFinish, CustomMediation.GetFANPlacementId(placementType));
     }
+
+    public void RequestInterstitialRewardedNoShow(AdPlacement.Type placementType, RewardDelegate onFinish = null)
+    {
+        onFinish?.Invoke(new RewardResult(RewardResult.Type.LoadFailed, "Not supported by Audience Network"));
+    }
 }

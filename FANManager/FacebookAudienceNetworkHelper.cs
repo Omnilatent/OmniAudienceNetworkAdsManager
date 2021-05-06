@@ -312,4 +312,9 @@ public class FacebookAudienceNetworkHelper : MonoBehaviour, IAdsNetworkHelper
     {
         onFinish?.Invoke(new RewardResult(RewardResult.Type.LoadFailed, "Not supported by Audience Network"));
     }
+
+    public void ShowInterstitialRewarded(AdPlacement.Type placementType, RewardDelegate onAdClosed)
+    {
+        onAdClosed?.Invoke(new RewardResult(RewardResult.Type.LoadFailed, "Not supported by Audience Network"));
+    }
 }

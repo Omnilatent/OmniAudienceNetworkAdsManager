@@ -1,0 +1,2 @@
+How to fix "error CS0117: 'AudienceNetworkAds' does not contain a definition for 'IsInitialized'":
+- AudienceNetwork has functions that are internal and so, can only be accessed from Script inside the same Assembly. To fix this, add an Assembly Definition Reference to AudienceNetwork SDK's folder that refer to OmniAdsManager's Assembly Definition

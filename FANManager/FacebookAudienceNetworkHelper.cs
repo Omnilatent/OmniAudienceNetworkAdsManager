@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using AudienceNetwork;
+using Omnilatent.AdsMediation;
 
 public class FANBannerData
 {
     public AdSize adSize;
-    public AdPosition adPosition;
+    public AudienceNetwork.AdPosition adPosition;
     public float xPos;
     public float yPos;
     public enum AnchorPosition { Center, Bottom }
     public AnchorPosition anchorPosition;
 
-    public FANBannerData(AdSize adSize, AdPosition adPosition, float xPos, float yPos, AnchorPosition anchorPos = AnchorPosition.Center)
+    public FANBannerData(AdSize adSize, AudienceNetwork.AdPosition adPosition, float xPos, float yPos, AnchorPosition anchorPos = AnchorPosition.Center)
     {
         this.adSize = adSize;
         this.adPosition = adPosition;
@@ -53,9 +54,9 @@ public class FacebookAudienceNetworkHelper : MonoBehaviour, IAdsNetworkHelper
     private RewardedVideoAd rewardedVideoAd;
     InterstitialAd interstitialAd;
     private AdView adView;
-    private AdPosition currentAdViewPosition;
+    private AudienceNetwork.AdPosition currentAdViewPosition;
 
-    public void ShowBanner(string placementId, AdsManager.InterstitialDelegate onAdLoaded = null)
+    public void ShowBanner(string placementId, AudienceNetwork.AdPosition adPosition, AdsManager.InterstitialDelegate onAdLoaded = null)
     {
         if (string.IsNullOrEmpty(placementId)) onAdLoaded(false);
         if (adView)
@@ -68,7 +69,7 @@ public class FacebookAudienceNetworkHelper : MonoBehaviour, IAdsNetworkHelper
         adView = new AdView(placementId, AdSize.BANNER_HEIGHT_50);
 
         adView.Register(gameObject);
-        currentAdViewPosition = AdPosition.BOTTOM;
+        currentAdViewPosition = adPosition;
 
         adView.AdViewDidLoad = delegate ()
         {
@@ -289,7 +290,26 @@ public class FacebookAudienceNetworkHelper : MonoBehaviour, IAdsNetworkHelper
 
     public void ShowBanner(AdPlacement.Type placementType, AdsManager.InterstitialDelegate onAdLoaded = null)
     {
-        ShowBanner(CustomMediation.GetFANPlacementId(placementType), onAdLoaded);
+        ShowBanner(placementType, Omnilatent.AdsMediation.BannerTransform.defaultValue, onAdLoaded);
+    }
+
+    public void ShowBanner(AdPlacement.Type placementType, BannerTransform bannerTransform, AdsManager.InterstitialDelegate onAdLoaded = null)
+    {
+        AudienceNetwork.AdPosition adPosition;
+        switch (bannerTransform.adPosition)
+        {
+            case Omnilatent.AdsMediation.AdPosition.Top:
+            case Omnilatent.AdsMediation.AdPosition.TopLeft:
+            case Omnilatent.AdsMediation.AdPosition.TopRight:
+                adPosition = AudienceNetwork.AdPosition.TOP;
+                break;
+            case Omnilatent.AdsMediation.AdPosition.Bottom:
+            case Omnilatent.AdsMediation.AdPosition.Center:
+            default:
+                adPosition = AudienceNetwork.AdPosition.BOTTOM;
+                break;
+        }
+        ShowBanner(CustomMediation.GetFANPlacementId(placementType), adPosition, onAdLoaded);
     }
 
     public void ShowInterstitial(AdPlacement.Type placementType, AdsManager.InterstitialDelegate onAdClosed)
